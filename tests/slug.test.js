@@ -1,11 +1,23 @@
-//funzione per creare lo slug
-const createSlug = () => {
+//destructuring test e expect
+const { test, expect } = require('@jest/globals');
 
+//importa posts
+const posts = require('../db/posts.js');
+
+//funzione per creare lo slug
+
+const createSlug = (slug) => {
+    if(typeof slug !== 'string') {
+        throw new error('il slug passato non è una stringa');
+    }
+    const baseSlug = slug.replaceAll(' ', '-').toLowerCase().replaceAll('/', '');
+    return baseSlug;
 }
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    
+    const slug = createSlug('ciao');
+    expect(() => {slug = 10}).toThrow();
 })
 
 //createSlug dovrebbe ritornare una stringa in lowercase
