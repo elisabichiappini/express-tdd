@@ -10,14 +10,18 @@ const createSlug = (slug) => {
     if(typeof slug !== 'string') {
         throw new error('il slug passato non è una stringa');
     }
-    const baseSlug = slug.replaceAll(' ', '-').toLowerCase().replaceAll('/', '');
+    const baseSlug = slug
+    .replaceAll(' ', '-')
+    .toLowerCase()
+    .replaceAll('/', '');
+
     return baseSlug;
 }
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    const slug = createSlug('ciao');
-    expect(() => {slug = 10}).toThrow();
+    const slug = createSlug(90);
+    expect(typeof slug).toBe('string');
 })
 
 //createSlug dovrebbe ritornare una stringa in lowercase
