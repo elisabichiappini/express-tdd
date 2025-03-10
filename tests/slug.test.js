@@ -20,7 +20,7 @@ const createSlug = (slug) => {
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    const slug = createSlug(90);
+    const slug = createSlug('ciao');
     expect(typeof slug).toBe('string');
 })
 
