@@ -7,8 +7,8 @@ const createSlug = (slug) => {
     if(typeof slug !== 'string') {
         throw new Error('il slug passato non è una stringa');
     }
-
-    return slug;
+    const baseSlug = slug.toLowerCase();
+    return baseSlug;
     // .replaceAll(' ', '-')
 
     // .replaceAll('/', '');
