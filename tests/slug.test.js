@@ -17,7 +17,9 @@ const createSlug = (slug) => {
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    const slug = createSlug('ciao');
+
+    const slug = createSlug('nome slug');
+    console.log(slug);
     expect(typeof slug).toBe('string');
 })
 
