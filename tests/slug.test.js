@@ -7,7 +7,9 @@ const createSlug = (slug) => {
     if(typeof slug !== 'string') {
         throw new Error('il slug passato non è una stringa');
     }
-    const baseSlug = slug.toLowerCase();
+    const baseSlug = slug.
+    replaceAll(' ', '-')
+    .toLowerCase();
     return baseSlug;
     // .replaceAll(' ', '-')
 
@@ -31,6 +33,7 @@ test('createSlug dovrebbe ritornare una stringa in lowercase', () => {
 //createSlug dovrebbe ritornare una stringa con gli spazi sostituiti da -
 test('createSlug dovrebbe ritornare una stringa con gli spazi sostituiti da -', () => {
     const slug = createSlug('ciao sono felice');
+    console.log(slug);
     expect(slug).toBe('ciao-sono-felice');
 })
 
