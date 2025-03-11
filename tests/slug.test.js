@@ -9,14 +9,14 @@ const createSlug = (slug) => {
     }
     return slug;
     // .replaceAll(' ', '-')
-    // .toLowerCase()
+
     // .replaceAll('/', '');
 
 }
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    const slug = createSlug('nome slug');
+    const slug = createSlug('ciao');
     console.log(slug);
     expect(typeof slug).toBe('string');
 })
