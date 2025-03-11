@@ -7,23 +7,22 @@ const createSlug = (slug) => {
     if(typeof slug !== 'string') {
         throw new Error('il slug passato non è una stringa');
     }
-    const baseSlug = slug
-    .replaceAll(' ', '-')
-    .toLowerCase()
-    .replaceAll('/', '');
+    return slug;
+    // .replaceAll(' ', '-')
+    // .toLowerCase()
+    // .replaceAll('/', '');
 
-    return baseSlug;
 }
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-
     const slug = createSlug('nome slug');
     console.log(slug);
     expect(typeof slug).toBe('string');
 })
 
 //createSlug dovrebbe ritornare una stringa in lowercase
+
 
 //createSlug dovrebbe ritornare una stringa con gli spazi sostituiti da -
 
