@@ -1,14 +1,11 @@
-//destructuring test e expect
+//Questa è la destructuring assignment in JavaScript. Sta estraendo due funzioni (test ed expect) dal modulo @jest/globals.
 const { test, expect } = require('@jest/globals');
-
-//importa posts
-const posts = require('../db/posts.js');
 
 //funzione per creare lo slug
 
 const createSlug = (slug) => {
     if(typeof slug !== 'string') {
-        throw new error('il slug passato non è una stringa');
+        throw new Error('il slug passato non è una stringa');
     }
     const baseSlug = slug
     .replaceAll(' ', '-')
