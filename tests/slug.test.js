@@ -9,6 +9,9 @@ const createSlug = (titolo, posts) => {
     if(typeof titolo !== 'string') {
         throw new Error('il titolo passato non è una stringa');
     }
+    if(!titolo.trim()) {
+        throw new Error('nessun titolo è stato passato');
+    }
     const baseSlug = titolo.replaceAll(' ', '-').toLowerCase().replaceAll('/', '');
     const slugs = posts.map(p => p.slug);
     let slug = baseSlug;
