@@ -6,6 +6,9 @@ const posts = require('../db/posts.js');
 
 //funzione per creare lo slug
 const createSlug = (titolo, posts) => {
+    if(!Array.isArray(posts) || posts.length === 0) {
+        throw new Error('post non passati');
+    }
     if(typeof titolo !== 'string') {
         throw new Error('il titolo passato non è una stringa');
     }
@@ -51,3 +54,6 @@ test('createSlug dovrebbe lanciare un errore in caso di titolo non presente o fo
 })
 
 //createSlug dovrebbe lanciare un errore se manca l'array dei post 
+test('createSlug dovrebbe lanciare un errore se manca l\'array dei post', () => {
+    expect(() => createSlug('torta paesana', [])).toThrow('post non passati');
+})
