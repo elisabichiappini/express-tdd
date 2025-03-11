@@ -1,43 +1,45 @@
 //Questa è la destructuring assignment in JavaScript. Sta estraendo due funzioni (test ed expect) dal modulo @jest/globals.
 const { test, expect } = require('@jest/globals');
 
+//importo gli slugs dei posts
+const posts = require('../db/posts.js');
+
 //funzione per creare lo slug
-
-const createSlug = (slug) => {
-    if(typeof slug !== 'string') {
-        throw new Error('il slug passato non è una stringa');
+const createSlug = (titolo, posts) => {
+    if(typeof titolo !== 'string') {
+        throw new Error('il titolo passato non è una stringa');
     }
-    const baseSlug = slug.
-    replaceAll(' ', '-')
-    .toLowerCase();
-    return baseSlug;
-    // .replaceAll(' ', '-')
-
-    // .replaceAll('/', '');
-
-}
+    const baseSlug = titolo.replaceAll(' ', '-').toLowerCase().replaceAll('/', '');
+    const slugs = posts.map(p => p.slug);
+    let slug = baseSlug;
+    let counter = 1;
+    while(slugs.includes(slug)) {
+        slug = `${baseSlug}-${counter}`;
+        counter++;
+    }
+    return slug;
+};
 
 //createSlug dovrebbe ritornare una stringa 
 test('createSlug dovrebbe ritornare una stringa', () => {
-    const slug = createSlug('ciao');
-    console.log(slug);
-    expect(typeof slug).toBe('string');
+    expect(typeof (createSlug('ciao', posts))).toBe('string');
 })
 
 //createSlug dovrebbe ritornare una stringa in lowercase
 test('createSlug dovrebbe ritornare una stringa in lowercase', () => {
-    const slug = createSlug('CIAO');
-    expect(slug).toBe('ciao')
+    expect(createSlug("QUESTA E UNA STRINGA", posts)).toBe('questa-e-una-stringa');
 })
 
 //createSlug dovrebbe ritornare una stringa con gli spazi sostituiti da -
 test('createSlug dovrebbe ritornare una stringa con gli spazi sostituiti da -', () => {
-    const slug = createSlug('ciao sono felice');
-    console.log(slug);
-    expect(slug).toBe('ciao-sono-felice');
+
+    expect( createSlug('ciao sono felice', posts)).toBe('ciao-sono-felice');
 })
 
 //createSlug dovrebbe incrementare di 1 lo slug quando esiste già 
+test('createSlug dovrebbe incrementare di 1 lo slug quando esiste già', () => {
+    expect(createSlug("torta paesana", posts)).toBe("torta-paesana-1");
+})
 
 //createSlug dovrebbe lanciare un errore in caso di titolo non presente o formato errato
 
